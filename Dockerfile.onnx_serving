@@ -1,0 +1,18 @@
+FROM mcr.microsoft.com/onnxruntime/server:latest
+
+ARG SERVER_DIR=inception_v3_onnx_runtime
+ENV PROJECT_DIR onnx-serving-study
+ENV MODEL_BASE_PATH models
+
+WORKDIR /${PROJECT_DIR}
+
+COPY ./${MODEL_BASE_PATH}/inception_v3.onnx /${PROJECT_DIR}/${MODEL_BASE_PATH}/inception_v3.onnx
+ENV MODEL_PATH /${PROJECT_DIR}/${MODEL_BASE_PATH}/inception_v3.onnx
+
+EXPOSE 8001
+EXPOSE 50051
+
+WORKDIR /onnxruntime/server/
+COPY ./${SERVER_DIR}/onnx_runtime_server_entrypoint.sh ./onnx_runtime_server_entrypoint.sh
+RUN chmod +x onnx_runtime_server_entrypoint.sh
+ENTRYPOINT ["./onnx_runtime_server_entrypoint.sh"]

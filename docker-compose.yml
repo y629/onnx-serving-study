@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  clinet:
+    container_name: myclient
+    image: onnx-serving-study_client
+    environment:
+      - API_ADDRESS=orts # why? -> Do `docker inspect myorts` コンテナのIPv4のエイリアスになってる
+      - GRPC_PORT=50051
+    tty: true
+    command: /bin/bash
+    depends_on:
+      - orts
+
+  orts:
+    container_name: myorts
+    image: onnx_serving_study_serving
+    restart: always
+    ports:
+      - "8001:8001"
+      - "50051:50051"
+    entrypoint: ["./onnx_runtime_server_entrypoint.sh"]
