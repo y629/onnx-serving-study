@@ -74,7 +74,7 @@ root@xxx:/onnx-serving-study＃ python image_pred_request.py
 # keeshond 0.006387784145772457
 ```
 
-3. 画像ファイルのパス(`./data/cat.jpg` or `./data/siamese_cat.jpg` or `./data/dof.jpg`)を引数としてを与えることで好きな画像を推論できる．
+3. 画像ファイルのパス(`./data/cat.jpg` or `./data/siamese_cat.jpg` or `./data/dog.jpg`)を引数としてを与えることで好きな画像を推論できる．
 ```bash
 root@xxx:/onnx-serving-study＃ python image_pred_request.py ./data/siamese_cat.jpg
 # 出力
