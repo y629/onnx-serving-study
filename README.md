@@ -3,15 +3,17 @@
 
 ONNX Runtime Serving を用いた推論器の公開のお勉強．
 
-参考: https://github.com/shibuiwilliam/ml-system-in-actions/tree/main/chapter4_serving_patterns
+具体的には以下について学びました:
+- 学習済みの推論器を公開する方法
+- 公開された推論器にリクエストを送り推論結果を得る方法
 
-## 概要
+参考: [機械学習システムデザインパターン4章のGitHub](https://github.com/shibuiwilliam/ml-system-in-actions/tree/main/chapter4_serving_patterns)
+
+## システム概要
 - ImageNet で学習済みの InceptionV3 モデルを ONNX Runtime Serving で Serving する．
-- クライアントは gRPC 通信で推論器サーバにリクエストを送る．
+- クライアントは gRPC 通信で推論器サーバにリクエストを送る．この時，推論リクエストには画像データを載せて送信する．
 - ONNX Runtime Serving は推論しかやってくれないので，クライアント側で，画像データの前処理・後処理を行う．
-- 推論器サーバから返ってきた推論結果はクライアント側で softmax で予測確率に変換して，予測ラベルを得る．
-
-推論器サーバのためのコンテナ，クライアントを想定したコンテナをそれぞれ作り，Docker Compose で稼働する．
+- 推論器サーバのためのコンテナ，クライアントを想定したコンテナをそれぞれ作り，Docker Compose で稼働する．
 
 
 ### ディレクトリ構成
